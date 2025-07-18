@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HR Recruitment Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>HR RECRUITMENT</h2>
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Candidates</li>
+      <li>Job Openings</li>
+      <li>Settings</li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="section" id="resume-parser">
+      <h3>Resume Parsing</h3>
+      <input type="file" id="resumeInput">
+      <button onclick="parseResume()">Parse Resume</button>
+    </div>
+
+    <div class="section" id="applicant">
+      <h3>Applicant</h3>
+      <div id="applicantDetails">No applicant selected.</div>
+    </div>
+
+    <div class="section" id="interview">
+      <h3>Interview Scheduling</h3>
+      <input type="datetime-local" id="interviewDateTime">
+      <button onclick="scheduleInterview()">Schedule Interview</button>
+    </div>
+
+    <div class="section" id="notes">
+      <h3>Notes</h3>
+      <textarea id="notesInput" placeholder="Write a note..."></textarea>
+      <button onclick="saveNotes()">Save Note</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
