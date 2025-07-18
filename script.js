@@ -1,32 +1,15 @@
-function parseResume() {
-  const fileInput = document.getElementById("resumeInput");
-  const file = fileInput.files[0];
+document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  if (!file) return alert("Upload a resume.");
+  const formData = new FormData();
+  const fileInput = document.getElementById("resume");
+  formData.append("resume", fileInput.files[0]);
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    const content = e.target.result;
+  const response = await fetch("/upload", {
+    method: "POST",
+    body: formData,
+  });
 
-    // Dummy parser: extract dummy info
-    const applicant = {
-      name: "John Doe",
-      email: "john@example.com",
-      experience: "5 years",
-      role: "Project Manager"
-    };
-
-    displayApplicant(applicant);
-  };
-
-  reader.readAsText(file);
-}
-
-function displayApplicant(app) {
-  document.getElementById("applicantDetails").innerHTML = `
-    <p><strong>${app.name}</strong></p>
-    <p>${app.email}</p>
-    <p>${app.experience}</p>
-    <p>${app.role}</p>
-  `;
-}
+  const result = await response.json();
+  document.getElementById("status").innerText = result.message || result.error;
+});
